@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #aaa;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Internship Management System</h2><!-- Conduct Interviews and Assessment -->
+    <div class="section">
+        <h3>1. Conduct Interviews & Assessments</h3>
+        <label>Applicant Name:</label>
+        <input type="text" id="applicantName">
+        <label>Assessment Score:</label>
+        <input type="number" id="assessmentScore">
+        <button onclick="addApplicant()">Add Applicant</button>
+        <ul id="applicantList"></ul>
+    </div>
+
+    <!-- Select & Notify Interns -->
+    <div class="section">
+        <h3>2. Select & Notify Interns</h3>
+        <button onclick="notifyInterns()">Notify Selected Interns</button>
+        <p id="notification"></p>
+    </div>
+
+    <!-- Monitor Progress & Feedback -->
+    <div class="section">
+        <h3>3. Monitor Progress & Feedback</h3>
+        <textarea id="progressReport" placeholder="Enter progress update..."></textarea>
+        <button onclick="submitProgress()">Submit Progress</button>
+        <p id="progressMessage"></p>
+    </div>
+
+    <!-- Evaluate & Improve Program -->
+    <div class="section">
+        <h3>4. Evaluate & Improve Program</h3>
+        <textarea id="improvementFeedback" placeholder="Enter feedback for improvement..."></textarea>
+        <button onclick="submitFeedback()">Submit Feedback</button>
+        <p id="feedbackMessage"></p>
+    </div>
+</div>
+
+<script>
+    let applicants = [];
+    
+    function addApplicant() {
+        let name = document.getElementById("applicantName").value;
+        let score = document.getElementById("assessmentScore").value;
+        if (name && score) {
+            applicants.push({ name, score });
+            displayApplicants();
+            alert("Applicant Added Successfully!");
+        }
+    }
+    
+    function displayApplicants() {
+        let list = document.getElementById("applicantList");
+        list.innerHTML = "";
+        applicants.forEach((applicant, index) => {
+            list.innerHTML += <li>${applicant.name} - Score: ${applicant.score}</li>;
+        });
+    }
+    
+    function notifyInterns() {
+        if (applicants.length > 0) {
+            document.getElementById("notification").innerText = "Interns have been notified!";
+            alert("Notification Sent!");
+        } else {
+            alert("No applicants to notify.");
+        }
+    }
+    
+    function submitProgress() {
+        let progress = document.getElementById("progressReport").value;
+        if (progress) {
+            document.getElementById("progressMessage").innerText = "Progress submitted successfully!";
+            alert("Progress Submitted!");
+        }
+    }
+    
+    function submitFeedback() {
+        let feedback = document.getElementById("improvementFeedback").value;
+        if (feedback) {
+            document.getElementById("feedbackMessage").innerText = "Feedback recorded successfully!";
+            alert("Feedback Submitted!");
+        }
+    }
+</script>
+
+</body>
+</html>
